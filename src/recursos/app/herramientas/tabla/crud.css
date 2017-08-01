@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.rootp{    
+    -fx-padding: 10 10 10 10;
+}
+.titulo{
+    -fx-font-size:50; 
+                -fx-background-insets: 10;
+                -fx-background-radius: 10; 
+    -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);    
+}

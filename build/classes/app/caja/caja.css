@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.label{
+    -fx-background-color: black;
+    -fx-font-size: 50px;
+    -fx-font-style: italic;
+    -fx-text-fill:white;
+    -fx-text-shadow:3px 2px red;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 3, 2;
+}

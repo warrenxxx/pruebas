@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="ventana" onMouseDragged="#drag" onMousePressed="#press" prefHeight="500.0" prefWidth="400.0" styleClass="fondo" stylesheets="@login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.login.LoginController">
+   <children>
+      <Label alignment="CENTER" prefHeight="34.0" prefWidth="400.0" text="Bienvenido" textFill="#907446" wrapText="true">
+         <font>
+            <Font size="27.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="175.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="user" prefHeight="25.0" prefWidth="266.0" promptText="Usuario" styleClass="usuario">
+         <VBox.margin>
+            <Insets left="120.0" right="120.0" />
+         </VBox.margin>
+      </TextField>
+      <PasswordField fx:id="password" promptText="Contraseña">
+         <VBox.margin>
+            <Insets bottom="30.0" left="120.0" right="120.0" />
+         </VBox.margin>
+      </PasswordField>
+      <HBox prefHeight="26.0" prefWidth="297.0">
+         <children>
+            <Button fx:id="login" defaultButton="true" mnemonicParsing="false" onAction="#entrar" text="Iniciar">
+               <HBox.margin>
+                  <Insets left="145.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
+         </children>
+      </HBox>
+      <ProgressIndicator fx:id="progress">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </ProgressIndicator>
+      <Label fx:id="error" alignment="CENTER" prefHeight="17.0" prefWidth="414.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <ImageView fx:id="con_estado" fitHeight="55.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin>
+         <image>
+            <Image url="@imagen.png" />
+         </image>
+      </ImageView>
+   </children>
+</VBox>

@@ -1,0 +1,18 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-image: url(omero.png);
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+.label{    
+    -fx-font-size:13px;
+}
+
+.titulo{
+    -fx-font-size:30px;
+    
+}

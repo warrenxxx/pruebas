@@ -1,0 +1,13 @@
+#b {
+    -fx-background-color: red;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-font:16px "Serif";
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+    -fx-border:3px;
+}
+#c{
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-underline:true;    
+}

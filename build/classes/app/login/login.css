@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.fondo{
+    -fx-background-image: url("login2.jpg");   
+    -fx-background-repeat:stretch;
+    -fx-background-size:400 500;
+}
+.usuario{
+    -fx-background-color:#6b5f61;
+}

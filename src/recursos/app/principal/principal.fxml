@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="ventana_principal" prefHeight="600.0" prefWidth="200.0" styleClass="mainFxmlClass" stylesheets="@principal.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.principal.PrincipalController">
+   <top>
+        <HBox prefHeight="40.0" prefWidth="1700.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@logo2.png" />
+                    </image>
+                </ImageView>
+                <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="742.0" styleClass="creador" text="WARREN .SAC" />
+                <Label fx:id="desconectado" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: red;" text="Sin Conección" visible="false">
+                    <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@sin_con.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT">
+                    <menus>
+                        <Menu fx:id="file" mnemonicParsing="false" text="Cerrar">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Cerrar" />
+                                <MenuItem mnemonicParsing="false" text="Cierre de caja" />
+                                <MenuItem mnemonicParsing="false" text="Cambio de Usuario" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                  <Menu mnemonicParsing="false" text="Inicio">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="560.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnInicio" mnemonicParsing="false" prefHeight="76.0" prefWidth="185.0" text="Inicio">
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="inicio" />
+               </styleClass>
+            </Button>
+            <Separator prefHeight="10.0" prefWidth="139.0" />
+                          <Button fx:id="btnVentas" mnemonicParsing="false" onAction="#ventas" prefHeight="60.0" prefWidth="185.0" text="Ventas">
+               <VBox.margin>
+                  <Insets bottom="1.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="ventas" />
+               </styleClass>
+                          </Button>
+                          <Button fx:id="btnEntrada" mnemonicParsing="false" onAction="#compras" prefHeight="60.0" prefWidth="185.0" text="Entrada">
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="compras" />
+               </styleClass>
+                          </Button>
+            <Button fx:id="btnEntrada1" layoutX="10.0" layoutY="157.0" mnemonicParsing="false" onAction="#caja" prefHeight="60.0" prefWidth="185.0" text="Caja">
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="caja" />
+               </styleClass>
+            </Button>
+            <Separator prefHeight="10.0" prefWidth="131.0" />
+                        <Button fx:id="btnUsuarios" mnemonicParsing="false" onAction="#m_categoria" prefHeight="60.0" prefWidth="185.0" text="Usuarios">
+               <VBox.margin>
+                  <Insets bottom="1.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="user" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnProductos" mnemonicParsing="false" onAction="#m_productos" prefHeight="79.0" prefWidth="185.0" text="Productos">
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="productos" />
+               </styleClass>
+            </Button>
+            <Separator prefHeight="10.0" prefWidth="135.0" />
+            <Button fx:id="btnSecciones" mnemonicParsing="false" onAction="#secciones" prefHeight="60.0" prefWidth="185.0" text="Secciones">
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="reportes" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnStock" mnemonicParsing="false" onAction="#stock_por_categoria" prefHeight="60.0" prefWidth="185.0" text="Stock">
+               <VBox.margin>
+                  <Insets bottom="1.0" top="1.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="reportes" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnMOvimientos" mnemonicParsing="false" onAction="#ventas_detallado" prefHeight="60.0" prefWidth="185.0" text="Movimientos">
+               <styleClass>
+                  <String fx:value="buttonall" />
+                  <String fx:value="reportes" />
+               </styleClass>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

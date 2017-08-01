@@ -1,0 +1,73 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #c691e2;
+}
+
+.creador{
+    
+    -fx-font: bold italic 20pt "Arial";
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+    -fx-background-color:#4e2159;
+    -fx-text-fill:#878089;
+}
+.user{
+    -fx-background-image: url(user.png);
+}
+.caja{
+    -fx-background-image: url(caja.png);
+}
+.buttonall{
+    -fx-background-repeat: no-repeat;
+    -fx-alignment:CENTER_RIGHT;            
+    -fx-background-position: left center ;
+    -fx-background-color: #801e96;
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-text-fill:#878089;
+    -fx-font-size: 15;
+    -fx-font: 15pt "Arial";
+}
+.ventas{
+    -fx-background-image: url(ventas.png);    
+}
+.compras{
+    -fx-background-image: url(compras.png);        
+}
+.reportes{
+    -fx-background-image: url(reportes.png);                
+}
+.productos{
+    -fx-background-image: url(productos.png);                    
+}
+.inicio{
+    -fx-background-image: url(inicio.png);                    
+}
+#labeles{
+    -fx-background-color: black;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+    -fx-text-fill:white;
+    -fx-text-shadow:3px 2px red;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 3, 2;
+    -fx-padding-top: 0 0 0 20;
+     -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+#gridVentas{
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+#labelVentas{
+    -fx-font-size:15; 
+                -fx-background-insets: 10;
+                -fx-background-radius: 10; 
+    -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);    
+}
