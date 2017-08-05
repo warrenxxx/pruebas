@@ -14,6 +14,7 @@ import app.clases.CMovimiento;
 import app.clases.CSession;
 import app.clases.CUsuario;
 import app.conecion;
+import app.herramientas.tabla.function;
 import app.herramientas.tabla.table;
 import java.io.IOException;
 import java.util.concurrent.Callable;
@@ -39,22 +40,24 @@ public class CrudCaja {
     public Node Inodo, Enodo;
     public Initializable Icontroler, Econtroller;
     public CCaja caja;
-    public final SimpleDoubleProperty totali,totale;
-    public DoubleProperty gettotali(){
+    public final SimpleDoubleProperty totali, totale;
+
+    public DoubleProperty gettotali() {
         return totali;
     }
-    public DoubleProperty gettotale(){
+
+    public DoubleProperty gettotale() {
         return totale;
     }
-    
+
     public CrudCaja(CSession s) {
         caja = new CCaja(s);
         caja.listarTcaja();
 
         ini_egresos(s);
         ini_ingresos(s);
-        totali=new SimpleDoubleProperty(0);
-        totale=new SimpleDoubleProperty(0);
+        totali = new SimpleDoubleProperty(0);
+        totale = new SimpleDoubleProperty(0);
     }
 
     public void ini_ingresos(CSession session) {
@@ -65,15 +68,15 @@ public class CrudCaja {
         x = new CCaja(null, session);
         table table;
         table = new table(D, caja.itcaja);
-        CCaja ventas=new CCaja();
+        CCaja ventas = new CCaja();
         ventas.setDescripcion("TOTAL VENTAS");
         ventas.setIngreso();
         ventas.setMonedas(new CMoneda("Soles", 1, new CMovimiento(session).sumTotalVentas()));
         table.add_Item(new ITCaj(ventas));
         table.addEditingCellCrud("Descripcion", "descripcion", D.descripcionProperty());
-        table.addButtonColumnCrud("Cantidad", "monedas", D.monedasProperty(), new Callable() {
+        table.addButtonColumnCrud("Cantidad", "monedas", D.monedasProperty(), new function() {
             @Override
-            public Object call() throws Exception {
+            public Object func(Object o) {
                 CMoneda m = new modal_moneda().display();
                 return m;
             }
@@ -89,8 +92,8 @@ public class CrudCaja {
         table.getItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(ListChangeListener.Change c) {
-              double k=new CCaja().sumarIngresosCaja(table.getItems());
-              totali.set(k);
+                double k = new CCaja().sumarIngresosCaja(table.getItems());
+                totali.set(k);
             }
         });
         try {
@@ -111,14 +114,14 @@ public class CrudCaja {
         table table;
         table = new table(D, caja.etcaja);
         table.addEditingCellCrud("Descripcion", "descripcion", D.descripcionProperty());
-        table.addButtonColumnCrud("Cantidad", "monedas", D.monedasProperty(), new Callable() {
+        table.addButtonColumnCrud("Cantidad", "monedas", D.monedasProperty(), new function() {
             @Override
-            public Object call() throws Exception {
+            public Object func(Object o) {
                 CMoneda m = new modal_moneda().display();
                 return m;
             }
         });
-        table.addRemoveButtonCrud();        
+        table.addRemoveButtonCrud();
         ((javafx.scene.control.TableColumn) table.getColumns().get(0)).prefWidthProperty().bind(
                 table.widthProperty()
                         .subtract(((javafx.scene.control.TableColumn) table.getColumns().get(1)).widthProperty())
@@ -128,8 +131,8 @@ public class CrudCaja {
         table.getItems().addListener(new ListChangeListener() {
             @Override
             public void onChanged(ListChangeListener.Change c) {
-              double k=new CCaja().sumarEgresosCaja(table.getItems());
-              totale.set(k);
+                double k = new CCaja().sumarEgresosCaja(table.getItems());
+                totale.set(k);
             }
         });
         try {

@@ -37,7 +37,7 @@ public class TVenta_Detalle {
         this.precio = new SimpleDoubleProperty(x.getPrecio());
         this.descuento = new SimpleDoubleProperty(x.getDescuento());
         this.articulo = new SimpleObjectProperty(x.getArticulo());
-        this.codigo=new SimpleStringProperty(y.getCodigo());
+        this.codigo=new SimpleStringProperty(y.getMedida().getCodigo());
         this.nombre=new SimpleStringProperty(y.getCategoria()+" "+y.getNombre()+" "+y.getDescripcion()+" "+y.getMedida());
         this.subtotal=new SimpleDoubleProperty();
         this.subtotal.bind(precio.multiply(cantidad).multiply(-1));

@@ -146,6 +146,7 @@ public class ComprasController implements Initializable {
         t.addEditingCellDouble("Cantidad", "cantidad");
         t.addEditingCell("Codigo", "codigo");
 //        t.addEditingCell("Nombre", "nombre");
+/*
         TableColumn tnombre=new TableColumn("Nombre");
         tnombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         Callback<TableColumn<Object, Object>, TableCell<Object, Object>> cellFactory
@@ -153,7 +154,7 @@ public class ComprasController implements Initializable {
 
         tnombre.setCellFactory(cellFactory);
         t.getColumns().add(tnombre);
-        t.addEditingCellDouble("Precio", "precio");
+  */      t.addEditingCellDouble("Precio", "precio");
         t.addEditingCellDouble("Total", "total");
         t.addRemoveButto();
         ventana.add(t, 0, 2, 4, 4);
@@ -220,7 +221,7 @@ public class ComprasController implements Initializable {
     }    
     public void agregar_articulo(CArticulo x){
         for(TArticuloCompra a:ventas){
-            if(a.getA().getCodigo()==x.getCodigo()){
+            if(a.getA().getMedida().getCodigo()==x.getMedida().getCodigo()){
                 a.cantidadProperty().set(a.cantidadProperty().get()+1);
                 actualizarVentas();
                 return;

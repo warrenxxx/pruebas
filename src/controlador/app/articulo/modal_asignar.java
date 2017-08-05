@@ -6,9 +6,16 @@
 package app.articulo;
 
 import app.clases.CMedida;
+import app.herramientas.tabla.table;
 import app.herramientas.textfilter.TextFieldDouble;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -25,64 +32,71 @@ import javafx.scene.layout.GridPane;
  */
 public class modal_asignar {
 
-    CMedida res=null;
+    ArrayList<CMedida> res = null;
 
-    public CMedida display() {
-        Dialog<CMedida> dialog = new Dialog<>();        
-        dialog.setTitle("Unidad para Ariticulo");
-        dialog.setHeaderText("Designe el Nombre de la unidad y la cantidad");
+    public ArrayList<CMedida> display(ArrayList<CMedida> c) {
+        try {
+            Dialog<ArrayList<CMedida>> dialog = new Dialog<>();
+            dialog.setTitle("Unidad y propiedades para Ariticulo");
+            dialog.setHeaderText("Designe el Nombre de la unidad y la cantidad");
+            dialog.setWidth(900);
+            ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 
-        dialog.setGraphic(new ImageView (Main.class.getResource("/app/login.png").toString()));
+            ObservableList l = FXCollections.observableArrayList();
+            for (CMedida m : c) {
+                l.add(new TMedidda(m));
+            }
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+            TMedidda daux=new TMedidda(new CMedida());
+            table a = new table(daux,l);
 
-        ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+            TMedidda t = new TMedidda(new CMedida());
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
+            a.addEditingCellCrud("Codigo", "codigo",daux.codigoProperty());
+            a.addComboBoxEditingCellCrud(new CMedida().getNombres(), "Medida", "medida", true,daux.medidaProperty());
+            a.addEditingCellDoubleCrud("Medida Cantidad", "cantidad",daux.cantidadProperty());
+            a.addEditingCellDoubleCrud("Costo", "costo",daux.costoProperty());
+            a.addEditingCellDoubleCrud("Precio Dia", "pdia",daux.pdiaProperty());
+            a.addEditingCellDoubleCrud("Precio Noche", "pnoche",daux.pnocheProperty());
+            a.addEditingCellDoubleCrud("Stock", "stock",daux.stockProperty());
+            grid.add(a.crud("Medidas").getValue(), 0, 0);
 
-        
-        ComboBox nombre = new ComboBox(new CMedida().getNombres());        
-        nombre.setPromptText("Nombre");
-        nombre.setEditable(true);
-
-        
-
-        TextFieldDouble cantidad  = new TextFieldDouble();
-        cantidad.setPromptText("Cantidad");
-
-        grid.add(new Label("Nombre:"), 0, 0);
-        grid.add(nombre, 1, 0);
-        grid.add(new Label("Cantidad:"), 0, 1);
-        grid.add(cantidad, 1, 1);
-
-        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
-        loginButton.setDisable(false);
+            Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+            loginButton.setDisable(false);
 
 // Do some validation (using the Java 8 lambda syntax).
-
-        dialog.getDialogPane().setContent(grid);
+            dialog.getDialogPane().setContent(grid);
 
 // Request focus on the username field by default.
-        Platform.runLater(() -> nombre.requestFocus());
-
+//        Platform.runLater(() -> nombre.requestFocus());
 // Convert the result to a username-password-pair when the login button is clicked.
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == loginButtonType) {
-                res=new CMedida(nombre.getSelectionModel().getSelectedItem().toString(),Double.parseDouble( cantidad.getText()));
-                return res;
-            }
-            return null;
-        });
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == loginButtonType) {
+                    res = new ArrayList<CMedida>();
+                    for (Object x : a.getItems()) {
+                        TMedidda med = (TMedidda) x;
+                        CMedida d = med.toElement();
+                        res.add(d);
+                    }
+                    return res;
+                }
+                return null;
+            });
 
-        Optional<CMedida> result = dialog.showAndWait();
+            Optional<ArrayList<CMedida>> result = dialog.showAndWait();
 
-        result.ifPresent(medida -> {
-            res=medida;
-            
-        });
+            result.ifPresent(medida -> {
+                res = medida;
+            });
 
-        return res;
+            return res;
+        } catch (IOException ex) {
+            Logger.getLogger(modal_asignar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

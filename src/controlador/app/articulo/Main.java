@@ -57,22 +57,17 @@ public class Main extends Application {
         });
         
         
-        table.addEditingCellCrud("Codigo", "codigo",D.codigoProperty());        
         table.addComboBoxEditingCellCrud(categorias, "Categoria", "categoria",true,D.categoriaProperty());
         table.addEditingCellCrud( "Marca", "nombre",D.nombreProperty());
         table.addEditingCellCrud( "Descripcion", "descripcion",D.descripcionProperty());        
-        table.addButtonColumnCrud("Medida", "medida",D.medidaProperty(),new Callable() {
+/*        table.addButtonColumnCrud("Medida", "medida",D.medidaProperty(),new Callable() {
             @Override
             public Object call() throws Exception {
                 CMedida m=new modal_asignar().display();                
                 return m;
             }
         });
-
-        table.addEditingCellDoubleCrud( "Costo", "costo",D.costoProperty());
-        table.addEditingCellDoubleCrud( "Precio Dia", "pdia",D.pdiaProperty());
-        table.addEditingCellDoubleCrud( "Precio Noche", "pnoche",D.pnocheProperty());
-        table.addEditingCellDoubleCrud( "Stock", "stock",D.stockProperty());
+*/
         table.addRemoveButtonCrud();
       
         final VBox vbox = new VBox();

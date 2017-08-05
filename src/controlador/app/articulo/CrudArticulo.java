@@ -7,14 +7,21 @@ package app.articulo;
 
 import app.clases.CArticulo;
 import app.clases.CMedida;
+import app.herramientas.tabla.function;
 import app.herramientas.tabla.table;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import javafx.util.Pair;
 
 /**
@@ -32,22 +39,20 @@ public class CrudArticulo {
     public table table;
     public CrudArticulo(){
         table=new table(D,x.listaObservableTarcitulo());
-        table.addEditingCellCrud("Codigo", "codigo",D.codigoProperty());        
         table.addComboBoxEditingCellCrud(categorias, "Categoria", "categoria",true,D.categoriaProperty());
         table.addEditingCellCrud( "Marca", "nombre",D.nombreProperty());
         table.addEditingCellCrud( "Descripcion", "descripcion",D.descripcionProperty());        
-        table.addButtonColumnCrud("Medida", "medida",D.medidaProperty(),new Callable() {
+        table.addButtonColumnCrud("Medida", "medida",D.medidaProperty(),new function() {
             @Override
-            public Object call() throws Exception {
-                CMedida m=new modal_asignar().display();                
-                return m;
+            public Object func(Object o) {
+                TArticulo t=(TArticulo) o;                
+                ArrayList<CMedida> m=new modal_medidas().display(t.getA().getMedidas());                
+                for(CMedida OO:m){
+                    System.out.println("r "+OO);
+                }
+                return m;               
             }
         });
-        table.addEditingCellDoubleCrud( "Costo", "costo",D.costoProperty());
-        table.addEditingCellDoubleCrud( "Precio Dia", "pdia",D.pdiaProperty());
-        table.addEditingCellDoubleCrud( "Precio Noche", "pnoche",D.pnocheProperty());
-        table.addEditingCellDoubleCrud( "Stock", "stock",D.stockProperty());
-        table.addComboBoxEditingCellCrud(organizaciones, "Tags", "organizacion",true,D.organizacionProperty());
 
         table.addRemoveButtonCrud();
         try {
@@ -61,5 +66,7 @@ public class CrudArticulo {
     public Node get_node(){
         return this.nodo;
     }
-   
+    
+
+
 }

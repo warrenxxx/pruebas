@@ -25,8 +25,11 @@ import javafx.stage.Stage;
  */
 public class modal_Articulo {
     CArticulo x;    
+    CMedida med;
     public CArticulo display(CArticulo x)  {
+        /*
         this.x=x;
+        this.med=x.getMedida();
         Stage wind = new Stage();
         wind.initModality(Modality.APPLICATION_MODAL);
         wind.setTitle("Elegir Productos Asignados");
@@ -43,7 +46,7 @@ public class modal_Articulo {
         grid.add(new Label("PRECIO NOCHE"), 0, 7);
         grid.add(new Label("STOCK"), 0, 8);
          
-        TextField a1=new TextField(x.getCodigo());
+        TextField a1=new TextField(med.getCodigo());
         ComboBox a2=new ComboBox(new CArticulo().getAllCategoriasObserbable());
             a2.setEditable(true);
             a2.getSelectionModel().select(x.getCategoria());
@@ -52,7 +55,10 @@ public class modal_Articulo {
         Button a5=new Button(x.getMedida().toString());
             a5.setOnAction(e->{
                 Object o=new modal_asignar().display();
-                if(o!=null){this.x.setMedida((CMedida) o);a5.setText(o.toString());}
+                if(o!=null){
+                    this.x.setMedida((CMedida) o);
+                    a5.setText(o.toString());
+                }
             });
         TextFieldDouble a6=new TextFieldDouble(x.getCosto());   
         TextFieldDouble a7=new TextFieldDouble(x.getPrecio_dia());
@@ -91,7 +97,8 @@ public class modal_Articulo {
         Scene SC = new Scene((Parent) grid);
         wind.setScene(SC);
         wind.showAndWait();
-        return this.x;
+        return this.x;*/
+        return null;
     }
 
 }

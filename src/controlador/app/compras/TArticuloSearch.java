@@ -8,6 +8,7 @@ package app.compras;
 
 
 import app.clases.CArticulo;
+import app.clases.CMedida;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -26,14 +27,16 @@ public class TArticuloSearch{
     private final SimpleDoubleProperty precio;
     
     private CArticulo a;
-
+    private CMedida med;
+    
     public TArticuloSearch(CArticulo x) {
-        this.a = x;        
+        this.a = x;     
+        this.med=x.getMedida();
         String aux=x.getNombre()+" "+x.getDescripcion()+" "+x.getMedida() ;
 //        String aux=x.getCategoria()+" "+x.getNombre()+" "+x.getDescripcion()+" "+x.getMedida() ;
         this.nombre = new SimpleStringProperty(aux);       
-        this.precio=new SimpleDoubleProperty(x.getCosto());
-        this.stock=new SimpleDoubleProperty(x.getStock());
+        this.precio=new SimpleDoubleProperty(med.getCosto());
+        this.stock=new SimpleDoubleProperty(med.getStock());
     }
 
     public StringProperty nombreProperty() {

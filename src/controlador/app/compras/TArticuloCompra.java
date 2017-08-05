@@ -6,6 +6,7 @@
 package app.compras;
 
 import app.clases.CArticulo;
+import app.clases.CMedida;
 import app.clases.CMovimientoDetalle;
 import app.herramientas.tabla.crud;
 import javafx.beans.property.DoubleProperty;
@@ -28,15 +29,17 @@ public class TArticuloCompra implements crud{
     private final SimpleDoubleProperty total;
 
     private CArticulo a;
-
+    private CMedida med;
+    
     public TArticuloCompra(CArticulo x) {
         this.a = x;
+        this.med=x.getMedida();
         String k=x.getCategoria()+" "+x.getNombre()+" "+a.getDescripcion()+" "+a.getMedida();
-        this.codigo = new SimpleStringProperty(a.getCodigo());
+        this.codigo = new SimpleStringProperty(med.getCodigo());
         this.nombre = new SimpleStringProperty(k);
-        this.precio=new SimpleDoubleProperty(a.getCosto());
+        this.precio=new SimpleDoubleProperty(med.getCosto());
         this.descuento=new SimpleDoubleProperty(0);
-        this.total=new SimpleDoubleProperty(a.getPrecio_dia());
+        this.total=new SimpleDoubleProperty(med.getPrecio_dia());
         this.cantidad=new SimpleDoubleProperty(1);
         this.total.bind(cantidadProperty().multiply(precio).subtract(descuento));
     }
@@ -64,7 +67,8 @@ public class TArticuloCompra implements crud{
     
     public void setArticulo(CArticulo x){
         this.a=x;
-        this.codigo.set(a.getCodigo());        
+        this.med=x.getMedida();
+        this.codigo.set(med.getCodigo());        
         String k=x.getCategoria()+" "+x.getNombre()+" "+a.getDescripcion()+" "+a.getMedida();
         this.nombre.set(k);
     }

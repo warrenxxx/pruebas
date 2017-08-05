@@ -28,11 +28,10 @@ public class TArticuloSearch{
 
     public TArticuloSearch(CArticulo x) {
         this.a = x;        
-        String aux=x.getNombre()+" "+x.getDescripcion()+" "+x.getMedida() ;
-//        String aux=x.getCategoria()+" "+x.getNombre()+" "+x.getDescripcion()+" "+x.getMedida() ;
+        String aux=x.getNombre()+" "+x.getDescripcion()+" "+x.getMedida();
         this.nombre = new SimpleStringProperty(aux);       
-        this.precio=new SimpleDoubleProperty(x.getPrecio());
-        this.stock=new SimpleDoubleProperty(x.getStock());
+        this.precio=new SimpleDoubleProperty(x.getMedida().getPrecio());
+        this.stock=new SimpleDoubleProperty(x.getMedida().getStock());
     }
 
     public StringProperty nombreProperty() {

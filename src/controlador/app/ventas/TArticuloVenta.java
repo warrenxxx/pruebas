@@ -31,13 +31,13 @@ public class TArticuloVenta implements crud{
 
     public TArticuloVenta(CArticulo x) {
         this.a = x;
-                System.out.println(a.getCodigo());
+                System.out.println(a.getMedida().getCodigo());
         String k=x.getCategoria()+" "+x.getNombre()+" "+a.getDescripcion()+" "+a.getMedida();
-        this.codigo = new SimpleStringProperty(a.getCodigo());
+        this.codigo = new SimpleStringProperty(a.getMedida().getCodigo());
         this.nombre = new SimpleStringProperty(k);
-        this.precio=new SimpleDoubleProperty(a.getPrecio());
+        this.precio=new SimpleDoubleProperty(a.getMedida().getPrecio());
         this.descuento=new SimpleDoubleProperty(0);
-        this.total=new SimpleDoubleProperty(a.getPrecio_dia());
+        this.total=new SimpleDoubleProperty(a.getMedida().getPrecio_dia());
         this.cantidad=new SimpleDoubleProperty(1);
         this.total.bind(cantidadProperty().multiply(precio).subtract(descuento));
     }

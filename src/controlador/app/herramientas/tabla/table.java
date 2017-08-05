@@ -52,13 +52,7 @@ public class table extends TableView {
     private ObservableList data=FXCollections.observableArrayList();
     public table() {
         this.setEditable(true);
-    }
-    public void add_Item(Object a){
-        this.data.add(a);
-        act();
-    }
-    public ObservableList getData(){
-        return this.data;
+        this.crud_insert = new ArrayList<>();
     }
     public table(crud crud,ObservableList l) {
         this.setEditable(true);
@@ -68,18 +62,25 @@ public class table extends TableView {
         this.data.addAll(l);
     }
 
-    public void addButtonColumn( String nombre, String property,Callable fun) {
+    public void add_Item(Object a){
+        this.data.add(a);
+        act();
+    }
+    public ObservableList getData(){
+        return this.data;
+    }
+
+    public void addButtonColumn( String nombre, String property,function f) {
         Callback<TableColumn<Object, Object>, TableCell<Object, Object>> buttonCellFactory
                 = (TableColumn<Object, Object> param) -> new ButtonEditingCell(){
             @Override
-            public Object action() {
+            public Object action(Object o) {
                 Object m=null;
                 try {
-                    m=fun.call();
+                    m=f.func(o);
                 } catch (Exception ex) {
-              System.out.println("try controlado por warren");
-            Logger.getLogger(table.class.getName()).log(Level.SEVERE, null, ex); 
-              }
+                    Logger.getLogger(table.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 return m;
             }                    
         } ;
@@ -89,14 +90,14 @@ public class table extends TableView {
         getColumns().add(col);        
     }
 
-    public void addButtonColumnCrud( String nombre, String property,  ObjectProperty pro,Callable fun) {        
+    public void addButtonColumnCrud( String nombre, String property,  ObjectProperty pro,function fun) {        
         Callback<TableColumn<Object, Object>, TableCell<Object, Object>> buttonCellFactory
                 = (TableColumn<Object, Object> param) -> new ButtonEditingCell(){
             @Override
-            public Object action() {
+            public Object action(Object o) {
                 Object m=null;
                 try {
-                    m=fun.call();
+                    m=fun.func(o);
                 } catch (Exception ex) {
             System.out.println("try controlado por warren");
             Logger.getLogger(table.class.getName()).log(Level.SEVERE, null, ex); 
@@ -112,7 +113,7 @@ public class table extends TableView {
         b.setOnAction(e -> {
             Object m=null;
                 try {
-                    m=fun.call();
+                    m=fun.func(null);
                 } catch (Exception ex) {
              System.out.println("try controlado por warren");
             Logger.getLogger(table.class.getName()).log(Level.SEVERE, null, ex); 
@@ -362,8 +363,7 @@ public class table extends TableView {
                 act();
                 crud.clear();
             }
-            else System.out.println("no inserto");
-            
+            else System.out.println("no inserto");            
         });
         TextField tf = crudcon.filtro();
         tf.textProperty().addListener((l, o, n) -> {
@@ -379,6 +379,7 @@ public class table extends TableView {
         crudcon.getPane().add(this, 0, 4, 3, 1);
         return new Pair(crudcon, page);
     }
+    /*
     public Node crudOnlyTableAndInsert() {
 
         GridPane grid=new GridPane();
@@ -402,6 +403,7 @@ public class table extends TableView {
         grid.add(this, 0, 1);
         return grid;
     }
+    */
     StringConverter<Double> scd = new StringConverter<Double>() {
             @Override
             public String toString(Double object) {
@@ -431,6 +433,8 @@ public class table extends TableView {
     public void act(){
         this.getItems().clear();
         this.getItems().addAll(data);
+        for(Object o:data)
+            System.out.println("w"+o);
     }
     public void clear_items(){
         this.data.clear();

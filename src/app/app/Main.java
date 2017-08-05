@@ -67,7 +67,8 @@ public class Main extends Application{
        x.setTipo("0");
        x.setUser("a");
        x.setPassword("a");
-     //  x.insert();
+     //a    a
+     x.insert();
   //      x.insert();
 
 //        aux();

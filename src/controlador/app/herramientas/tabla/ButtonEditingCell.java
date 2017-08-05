@@ -12,7 +12,7 @@ import javafx.scene.control.TableCell;
  *
  * @author warren
  */
-public class ButtonEditingCell extends TableCell<Object, Object> {
+public abstract class ButtonEditingCell extends TableCell<Object, Object> {
 
     private Button button;
     public ButtonEditingCell() {  
@@ -32,7 +32,6 @@ public class ButtonEditingCell extends TableCell<Object, Object> {
     @Override
     public void cancelEdit() {
         super.cancelEdit();
-
         setText(String.valueOf(getItem()));
         setGraphic(null);
     }
@@ -65,12 +64,10 @@ public class ButtonEditingCell extends TableCell<Object, Object> {
         //button.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
         
         button.setOnAction((e) -> {
-            commitEdit(action());
+            commitEdit(action(this.getTableRow().getItem()));
         });
     }
-    public Object action(){
-            return null;
-    }
+    public abstract Object action(Object h);
 
     private Object getcontrol() {
         return getItem() == null ? "": getItem();
@@ -84,6 +81,7 @@ public class ButtonEditingCell extends TableCell<Object, Object> {
         if(newValue==null)return;
         super.commitEdit(newValue); //To change body of generated methods, choose Tools | Templates.
         crud x= (crud) getTableRow().getItem();
+
         x.update();
     }
     

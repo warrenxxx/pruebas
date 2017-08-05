@@ -208,7 +208,7 @@ public class VentasController implements Initializable {
     }    
     public void agregar_articulo(CArticulo x){
         for(TArticuloVenta a:ventas){
-            if(a.getA().getCodigo()==x.getCodigo()){
+            if(a.getA().getMedida().getCodigo()==x.getMedida().getCodigo()){
                 a.cantidadProperty().set(a.cantidadProperty().get()+1);
                 actualizarVentas();
                 return;

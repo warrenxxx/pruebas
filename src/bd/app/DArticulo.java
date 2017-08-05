@@ -2,6 +2,7 @@ package app;
 
 import app.clases.CArticulo;
 import static app.Main.CONNE;
+import app.clases.CMedida;
 import java.util.ArrayList;
 
 
@@ -44,7 +45,7 @@ public class DArticulo extends DPrincipal{
         ArrayList res=new ArrayList();
         ArrayList datos = new ArrayList();
         con.set_conecion(table);
-        res=(ArrayList) con.get_colletion().distinct(new CArticulo().organizacion);
+        res=(ArrayList) con.get_colletion().distinct(new CMedida().organizacion);
         return res;
     }
     //</editor-fold>

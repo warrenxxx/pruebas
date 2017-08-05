@@ -7,6 +7,7 @@ package app.usuario;
 
 import app.clases.CPersona;
 import app.clases.CUsuario;
+import app.herramientas.tabla.function;
 import app.herramientas.tabla.table;
 import java.io.IOException;
 import java.util.concurrent.Callable;
@@ -32,12 +33,17 @@ public class CrudUsuario {
         table.addEditingCellCrud( "User", "user",D.userProperty());
         table.addEditingCellCrud( "Password", "descripcion",D.passwordProperty());        
         table.addEditingCellCrud( "Nivel", "nivel",D.nivelProperty());        
-        table.addButtonColumnCrud("Entidad", "entidad",D.entidadProperty(),new Callable() {
+        table.addButtonColumnCrud("Entidad", "entidad",D.entidadProperty(),new function() {
             @Override
-            public Object call() throws Exception {
-                CPersona p=new modal_Persona().display();
+            public Object func(Object o) {
+               CPersona p=null;
+                try {
+                    p = new modal_Persona().display();
+                } catch (IOException ex) {
+                    Logger.getLogger(CrudUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 return p;                
-            }
+             }
         });
 
         table.addRemoveButtonCrud();
